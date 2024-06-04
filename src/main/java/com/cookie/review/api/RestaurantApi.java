@@ -23,7 +23,7 @@ public class RestaurantApi {
             @RequestBody CreateAndEditRestaurantRequest request
             ){
         return "This is createRestaurant, name=" + request.getName() + "address=" +request.getAddress()
-            + ",menu[0].name" + request.getMenus().get(0).getName() + ", menu[0].price=" +request.getMenus().get(0).getPrice();
+            + ",menu[0].name " + request.getMenus().get(0).getName() + ", menu[0].price=" +request.getMenus().get(0).getPrice();
     }
 
     @PutMapping("/restaurant/{restaurantId}")
