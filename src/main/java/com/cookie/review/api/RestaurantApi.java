@@ -1,10 +1,15 @@
 package com.cookie.review.api;
 
 import com.cookie.review.api.request.CreateAndEditRestaurantRequest;
+import com.cookie.review.api.response.RestaurantDetailView;
+import com.cookie.review.api.response.RestaurantView;
 import com.cookie.review.model.RestaurantEntity;
 import com.cookie.review.service.RestaurantService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+
+import java.time.ZonedDateTime;
+import java.util.List;
 
 @RequiredArgsConstructor // 생성자 주입을 임의의 코드없이 자동으로 설정
 @RestController
@@ -13,15 +18,38 @@ public class RestaurantApi {
     private final RestaurantService restaurantService;
 
     @GetMapping("/restaurants")
-    public String getRestaurants() {
-        return "1111";
+    public List<RestaurantView> getRestaurants() {
+//        return List.of(RestaurantView.builder()
+//                .id(0L)
+//                .name("test name")
+//                .address("test address")
+//                .createdAt(ZonedDateTime.now())
+//                .updateAt(ZonedDateTime.now())
+//                .build());
+        return  restaurantService.getAllRestaurant();
     }
 
     @GetMapping("restaurant/{restaurantId}")
-    public String getRestaurants(
+    public RestaurantDetailView getRestaurants(
             @PathVariable Long restaurantId
     ) {
-        return "2222" + restaurantId;
+//        return RestaurantDetailView.builder()
+//                .id(0L)
+//                .name("test name")
+//                .address("test address")
+//                .createdAt(ZonedDateTime.now())
+//                .updateAt(ZonedDateTime.now())
+//                .menus(List.of(
+//                        RestaurantDetailView.Menu.builder()
+//                                .id(0L)
+//                                .name("test name")
+//                                .price(500)
+//                                .createdAt(ZonedDateTime.now())
+//                                .updateAt(ZonedDateTime.now())
+//                                .build()
+//                ))
+//                .build();
+        return restaurantService.getRestaurantDetailView(restaurantId);
     }
 
     @PostMapping("/restaurant")
