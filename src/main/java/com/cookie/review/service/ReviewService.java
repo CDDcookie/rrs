@@ -39,8 +39,6 @@ public class ReviewService {
 
         reviewRepository.delete(review);
     }
-
-
     public ReviewDto getRestaurantReview(Long restaurantId, Pageable page) {
         Double avgScore = reviewRepository.getAvgScoreByRestaurantId(restaurantId);
         Slice<ReviewEntity> reviews = reviewRepository.findSliceByRestaurantId(restaurantId, page);
